@@ -33,7 +33,7 @@ const Family = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleChangeFamily = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if (!newFamilyId || newFamilyId === family._id) {
@@ -44,8 +44,9 @@ const Family = () => {
         newFamilyId,
       });
       console.log(changedFamily.data);
+      handleClose();
     } catch (error) {
-      setErrorMessage('')
+      setErrorMessage("Error");
       console.log(error);
     }
   };
@@ -56,7 +57,7 @@ const Family = () => {
         <>
           <Button onClick={handleOpen}>Family Options</Button>
           <FamilyDetails family={family} />
-          <Button onClick={handleChangeFamily}>Join Different Family</Button>
+          {/* <Button onClick={handleChangeFamily}>Join Different Family</Button> */}
 
           <Modal
             open={open}
@@ -73,7 +74,7 @@ const Family = () => {
                 <Typography>{family._id}</Typography>
 
                 <Typography>or</Typography>
-                <form>
+                <form onSubmit={handleSubmit}>
                   <Box>
                     <Stack>
                       <TextField
@@ -84,7 +85,8 @@ const Family = () => {
                         required
                         margin='normal'
                       />
-                      <Button>Join different</Button>
+                      <Button type="submit">Join Different Family</Button>
+                      {errorMessage && <p>{errorMessage}</p>}
                     </Stack>
                   </Box>
                 </form>

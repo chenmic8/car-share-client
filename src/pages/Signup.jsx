@@ -18,7 +18,7 @@ import {
 const Signup = () => {
   const { googleSignup, storeToken } = useContext(AuthContext);
   const { setUser, getToken } = useContext(LoadingContext);
-  const naviagte = useNavigate();
+  const navigate = useNavigate();
 
   const [signupError, setSignupError] = useState("");
 
@@ -101,6 +101,7 @@ const Signup = () => {
       // setUser(newUser.data);
       storeToken(createdUser.data.authToken);
       setUser(createdUser.data.user);
+      navigate("/events")
     } catch (error) {
       console.log("RESPONSE ERROR MESSAGE", error.response.data.message);
       setSignupError(error.response.data.message);
