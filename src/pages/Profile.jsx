@@ -1,4 +1,5 @@
-import React from 'react'
+import { useContext } from "react"
+import { LoadingContext } from "../context/loadingContext"
 
 const Profile = () => {
   return (

@@ -42,7 +42,7 @@ function App() {
               <Route path='/profile' element={<Profile />} />
               <Route path='/family' element={<Family />} />
               <Route path='/locations' element={<Locations />} />
-              <Route path='*' element={<p>404 not found</p>} />
+              <Route path='*' element={<Events />} />
             </Routes>
           </Navbar>
         </>
