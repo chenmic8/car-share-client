@@ -9,15 +9,15 @@ import { LoadingProvider } from "./context/loadingContext";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider, StyledEngineProvider, createTheme } from "@mui/material/styles";
 
-import makeStyles from '@mui/styles/makeStyles';
+// import makeStyles from '@mui/styles/makeStyles';
 
 const theme = createTheme();
 
-const useStyles = makeStyles((theme) => {
-  root: {
-    // some CSS that accesses the theme
-  }
-});
+// const useStyles = makeStyles((theme) => {
+//   root: {
+//     // some CSS that accesses the theme
+//   }
+// });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
