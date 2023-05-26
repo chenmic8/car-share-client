@@ -46,6 +46,7 @@ const AddLocationModal = ({ closeModal }) => {
     try {
       const newLocation = await post(`/locations/create/${user._id}`, location);
       console.log("new location: ", newLocation);
+      window.location.reload(true)
       closeModal();
     } catch (error) {
       console.log(error);

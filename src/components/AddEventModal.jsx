@@ -3,13 +3,19 @@ import { LoadingContext } from "../context/loadingContext";
 import { post } from "../services/dataService";
 import { Stack, Box, Typography } from "@mui/material";
 
-const AddEvent = () => {
+const AddEvent = ({ closeModal }) => {
   let today = new Date();
   let hourFromNow = new Date();
   hourFromNow.setHours(today.getHours() + 1);
 
-  const { familyCars, familyLocations, familyUsers, family, user } =
-    useContext(LoadingContext);
+  const {
+    familyCars,
+    familyLocations,
+    familyUsers,
+    family,
+    user,
+    setFamilyEvents,
+  } = useContext(LoadingContext);
   const [title, setTitle] = useState("");
   const [startTime, setStartTime] = useState(today);
   const [endTime, setEndTime] = useState(hourFromNow);
@@ -59,6 +65,8 @@ const AddEvent = () => {
         distanceMeters: 1,
       });
       console.log("CREATED AN EVENT: ", createdEvent.data);
+      window.location.reload(true)
+      closeModal();
     } catch (error) {
       setEventFormErrorMessage("Server Error");
       console.log(error);

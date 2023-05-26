@@ -44,6 +44,7 @@ const AddCarModal = ({ closeModal }) => {
     try {
       const newCar = await post(`/cars/create/${family._id}`, car);
       console.log("new car: ", newCar);
+      window.location.reload(true)
       closeModal();
     } catch (error) {
       console.log(error);

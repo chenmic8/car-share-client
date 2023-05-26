@@ -32,12 +32,12 @@ const EditEventModal = ({ event, handleClose }) => {
   const handleDelete = async (e) => {
     e.preventDefault();
     try {
-      await post(`/events/delete/${event._id}`)
-      handleClose()
+      await post(`/events/delete/${event._id}`);
+      handleClose();
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -198,8 +198,12 @@ const EditEventModal = ({ event, handleClose }) => {
               })}
             </select>
             <button type='submit'>Submit</button>
-            <button type="button" onClick={handleDelete}>Delete</button>
-            <button type="button" onClick={handleClose}>Close</button>
+            <button type='button' onClick={handleDelete}>
+              Delete
+            </button>
+            <button type='button' onClick={handleClose}>
+              Close
+            </button>
           </Stack>
         </form>
       </Box>

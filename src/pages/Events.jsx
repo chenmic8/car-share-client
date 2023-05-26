@@ -20,9 +20,11 @@ const style = {
 };
 
 const Events = () => {
+  
+
   const { dataIsLoading, familyEvents } = useContext(LoadingContext);
 
-  const [orderedDates, setOrderedDates] = useState([]);
+  // const [orderedDates, setOrderedDates] = useState([]);
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -146,6 +148,7 @@ const Events = () => {
       {/* //FOR SEVEN COLUMNS, ONE FOR EACH DAY OF THE WEEK!!!!!!!!!!!!!!!!!!!!!!! */}
       {!dataIsLoading && familyEvents ? (
         <>
+          <Button onClick={handleOpen}>Add Event</Button>
           <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} md={12 / 7}>
@@ -196,6 +199,16 @@ const Events = () => {
               </Grid>
             </Grid>
           </Box>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby='modal-modal-title'
+            aria-describedby='modal-modal-description'
+          >
+            <Box sx={style}>
+              <AddEvent closeModal={handleClose} />
+            </Box>
+          </Modal>
         </>
       ) : (
         <p>Loading...</p>
