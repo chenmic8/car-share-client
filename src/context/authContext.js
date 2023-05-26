@@ -39,7 +39,7 @@ const AuthProvider = ({ children }) => {
     onSuccess: async ({ code }) => {
       console.log("TRYING TO GET THE RESPONSE OFTHE GOOGLE TTHING")
       try {
-        const tokens = await axios.post("http://localhost:8080/auth/google", {
+        const tokens = await axios.post("https://family-car-share.fly.dev/auth/google", {
           // http://localhost:4000/auth/google backend that will exchange the code
           code,
         });
