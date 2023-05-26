@@ -56,7 +56,7 @@ const AddLocationModal = ({ closeModal }) => {
   return <Box>
   <form onSubmit={handleSubmit}>
     <Stack>
-      <Typography variant='h5'>Add Location</Typography>
+      <Typography variant='h5'>Edit Location</Typography>
       {errorMessage && <p>{errorMessage}</p>}
 
    
@@ -92,7 +92,7 @@ const AddLocationModal = ({ closeModal }) => {
       <button type='submit'>Submit</button>
     </Stack>
   </form>
-</Box>;
-};
+</Box>
+}
 
 export default AddLocationModal;

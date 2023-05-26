@@ -5,7 +5,7 @@ const LoadingContext = createContext();
 const LoadingProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [dataIsLoading, setDataIsLoading] = useState(true)
+  const [dataIsLoading, setDataIsLoading] = useState(true);
   const [cars, setCars] = useState([]);
   const [events, setEvents] = useState([]);
   const [family, setFamily] = useState({});
@@ -15,6 +15,12 @@ const LoadingProvider = ({ children }) => {
   const [familyLocations, setFamilyLocations] = useState([]);
   const [familyUsers, setFamilyUsers] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
+  const [location, setLocation] = useState({ lng: 0, lat: 0 });
+  const [viewport, setViewport] = useState({
+    latitude: 37.7577,
+    longitude: -122.4376,
+    zoom: 8
+  });
 
   const getToken = () => {
     return localStorage.getItem("authToken");
@@ -81,6 +87,10 @@ const LoadingProvider = ({ children }) => {
         setFamilyLocations,
         familyUsers,
         setFamilyUsers,
+        location,
+        setLocation,
+        viewport,
+        setViewport
       }}
     >
       {children}
