@@ -32,7 +32,7 @@ const AddEvent = ({ closeModal }) => {
     return (endMinutes - startMinutes) / 1000 / 60;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (
       !title ||
@@ -53,7 +53,7 @@ const AddEvent = ({ closeModal }) => {
     }
 
     try {
-      const createdEvent = post(`/events/create/${family._id}`, {
+      const createdEvent = await post(`/events/create/${family._id}`, {
         title,
         beginTime: startTime,
         endTime,
