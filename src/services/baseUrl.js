@@ -1,1 +1,1 @@
-export const baseUrl = "https://family-car-share.fly.dev/"
+export const baseUrl = "https://family-car-share.fly.dev"

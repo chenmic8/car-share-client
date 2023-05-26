@@ -44,8 +44,8 @@ const AuthProvider = ({ children }) => {
           code,
         });
         console.log("TOKENS", tokens);
-        const { accessToken, user, authToken } = tokens.data;
-        localStorage.setItem("accessToken", accessToken);
+        const { user, authToken } = tokens.data;
+        // localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("authToken", authToken);
 
         setUser(user);
