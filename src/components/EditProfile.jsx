@@ -1,11 +1,9 @@
 import { TextField, Button } from "@mui/material";
-import { LoadingContext } from "../context/loadingContext";
-import { useContext, useState } from "react";
-import { get, post } from "../services/dataService";
+import { useState } from "react";
+import { post } from "../services/dataService";
 // import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
-const EditProfile = ({ closeModal }) => {
-  const { user } = useContext(LoadingContext);
+const EditProfile = ({ closeModal, user, formatDate }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [profileInfo, setProfileInfo] = useState({
     firstName: user.firstName,
@@ -15,6 +13,7 @@ const EditProfile = ({ closeModal }) => {
     phone: user.phone,
     role: user.role,
   });
+
   const isOverSixteen = (dateString) => {
     const today = new Date();
     const birthDate = new Date(dateString);
@@ -45,6 +44,7 @@ const EditProfile = ({ closeModal }) => {
       const updatedUser = await post(`/users/update/${user._id}`, profileInfo);
       console.log("updated user", updatedUser.data);
       closeModal();
+      window.location.reload(false);
     } catch (error) {
       setErrorMessage("User with that email may already exist");
       console.log(error);
@@ -54,7 +54,6 @@ const EditProfile = ({ closeModal }) => {
   const handleChange = (e) => {
     e.preventDefault();
     setProfileInfo((prev) => {
-      console.log('user: ', user)
       return {
         ...prev,
         [e.target.name]: e.target.value,
@@ -112,7 +111,7 @@ const EditProfile = ({ closeModal }) => {
           label='Birthdate'
           name='birthdate'
           type='date'
-          defaultValue={profileInfo.birthdate}
+          defaultValue={formatDate(profileInfo.birthdate)}
           onChange={handleDateChange}
           fullWidth
           margin='normal'

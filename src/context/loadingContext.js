@@ -53,22 +53,12 @@ const LoadingProvider = ({ children }) => {
     }
   };
 
-  const getUserInfo = async() => {
-    try{
-      const userInfoPromise = await get(`/users/details/${user._id}`);
-      setUser(userInfoPromise.data)
-      console.log('user info data:', userInfoPromise.data)
-    }
-    catch (error){
-      console.log(error)
-    }
-  }
+
 
   useEffect(() => {
     getToken();
     if (user) {
       getFamilyInfo();
-      getUserInfo();
     }
   }, [user]);
 
