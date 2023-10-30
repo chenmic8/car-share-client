@@ -41,9 +41,8 @@ const EditProfile = ({ closeModal }) => {
       return;
     }
     try {
-      const updatedUser = await post(`/users/update/${user._id}`, {
-        profileInfo,
-      });
+      console.log("this is the profile info: ", profileInfo);
+      const updatedUser = await post(`/users/update/${user._id}`, profileInfo);
       console.log("updated user", updatedUser.data);
       closeModal();
     } catch (error) {
@@ -55,11 +54,16 @@ const EditProfile = ({ closeModal }) => {
   const handleChange = (e) => {
     e.preventDefault();
     setProfileInfo((prev) => {
-      return { ...prev, [e.target.name]: e.target.value };
+      console.log('user: ', user)
+      return {
+        ...prev,
+        [e.target.name]: e.target.value,
+      };
     });
   };
 
   const handleDateChange = (e) => {
+    e.preventDefault();
     setProfileInfo((prev) => {
       return { ...prev, [e.target.name]: new Date(e.target.value) };
     });
@@ -75,10 +79,11 @@ const EditProfile = ({ closeModal }) => {
   return (
     <>
       <form onSubmit={handleSubmit}>
+        {errorMessage && <p>{errorMessage}</p>}
         <TextField
           label='First Name'
           name='firstName'
-          value={user.firstName}
+          value={profileInfo.firstName}
           onChange={handleChange}
           fullWidth
           margin='normal'
@@ -87,7 +92,7 @@ const EditProfile = ({ closeModal }) => {
         <TextField
           label='Last Name'
           name='lastName'
-          value={user.lastName}
+          value={profileInfo.lastName}
           onChange={handleChange}
           fullWidth
           margin='normal'
@@ -97,7 +102,7 @@ const EditProfile = ({ closeModal }) => {
           label='Email'
           name='email'
           type='email'
-          value={user.email}
+          value={profileInfo.email}
           onChange={handleChange}
           fullWidth
           margin='normal'
@@ -107,7 +112,7 @@ const EditProfile = ({ closeModal }) => {
           label='Birthdate'
           name='birthdate'
           type='date'
-          defaultValue={user.birthdate}
+          defaultValue={profileInfo.birthdate}
           onChange={handleDateChange}
           fullWidth
           margin='normal'
@@ -119,7 +124,7 @@ const EditProfile = ({ closeModal }) => {
           label='Phone'
           type='number'
           name='phone'
-          value={user.phone}
+          value={profileInfo.phone}
           onChange={handleNumberChange}
           fullWidth
           margin='normal'

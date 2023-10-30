@@ -20,7 +20,7 @@ function App() {
   const { getToken, user } = useContext(LoadingContext);
 
   return (
-    <div className='App'>
+    <>
       {!getToken() && (
         <>
           <Routes>
@@ -47,7 +47,7 @@ function App() {
           </Navbar>
         </>
       )}
-    </div>
+      </>
   );
 }
 

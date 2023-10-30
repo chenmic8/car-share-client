@@ -93,7 +93,7 @@ const Navbar = ({ children }) => {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", bgcolor: "red" }} p={0}>
       <CssBaseline />
       <AppBar position='fixed' open={open}>
         <Toolbar>
@@ -103,7 +103,8 @@ const Navbar = ({ children }) => {
             onClick={handleDrawerOpen}
             edge='start'
             sx={{ mr: 2, ...(open && { display: "none" }) }}
-            size="large">
+            size='large'
+          >
             <MenuIcon />
           </IconButton>
           <Typography variant='h6' noWrap component='div'>
@@ -125,7 +126,7 @@ const Navbar = ({ children }) => {
         open={open}
       >
         <DrawerHeader>
-          <IconButton onClick={handleDrawerClose} size="large">
+          <IconButton onClick={handleDrawerClose} size='large'>
             {theme.direction === "ltr" ? (
               <ChevronLeftIcon />
             ) : (
@@ -179,7 +180,7 @@ const Navbar = ({ children }) => {
           </ListItem>
         </List>
       </Drawer>
-      <Main open={open}>
+      <Main open={open} sx={{ p: "0" }}>
         <DrawerHeader />
         {children}
       </Main>

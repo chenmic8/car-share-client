@@ -11,7 +11,21 @@ import { ThemeProvider, StyledEngineProvider, createTheme } from "@mui/material/
 
 // import makeStyles from '@mui/styles/makeStyles';
 
-const theme = createTheme();
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#1976D2"
+    },
+    secondary: {
+      main: "#F6F8FC"
+    }
+  },
+  typography: {
+    fontFamily: [
+      ''
+    ].join(',')
+  }
+});
 
 // const useStyles = makeStyles((theme) => {
 //   root: {

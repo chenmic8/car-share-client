@@ -1,9 +1,18 @@
-import { TextField, Modal, Box, Button } from "@mui/material";
+import {
+  TextField,
+  Modal,
+  Box,
+  Button,
+  Container,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { LoadingContext } from "../context/loadingContext";
 import { useContext, useState } from "react";
 import EditProfilePicture from "../components/EditProfilePicture";
 import ProfileDetails from "../components/ProfileDetails";
 import EditProfile from "../components/EditProfile";
+import Loading from "../components/Loading";
 
 const style = {
   position: "absolute",
@@ -28,21 +37,54 @@ const Profile = () => {
     <>
       {user ? (
         <>
-          <ProfileDetails user={user} />
-          <Button onClick={handleOpen}>Edit User</Button>
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby='modal-modal-title'
-            aria-describedby='modal-modal-description'
+          <Box
+            sx={{
+              bgcolor: "green",
+              height: "100vh",
+              gap: "40px",
+              p: "80px",
+              display: "flex",
+              flexDirection: "column",
+            }}
           >
-            <Box sx={style}>
-              <EditProfile user={user} closeModal={handleClose} />
+            <Box sx={{ bgcolor: "white" }}>YOUR PROFILE MY DETAILS</Box>
+            <Box sx={{ bgcolor: "white" }}>
+              <Stack>
+                <Box>
+                  <div className='avatar'>
+                    <img src={user.profilePic} alt={`${user.firstName}`} />
+                  </div>
+                  {/* <EditProfilePicture user={user} /> */}
+                </Box>
+
+                <Typography variant='h5'>{`${user.firstName} ${user.lastName}`}</Typography>
+
+                <Typography variant='body1'>{user.email}</Typography>
+              </Stack>
             </Box>
-          </Modal>
+            <Box sx={{ bgcolor: "white" }}>
+              <Typography variant='body1'>{user.role}</Typography>
+              {/* birthday */}
+              {/* <Typography variant='body1'>{user.birthdate}</Typography> */}
+
+              <Typography variant='body1'>{user.phone}</Typography>
+            </Box>
+
+            <Button onClick={handleOpen}>Edit User</Button>
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby='modal-modal-title'
+              aria-describedby='modal-modal-description'
+            >
+              <Box sx={style}>
+                <EditProfile user={user} closeModal={handleClose} />
+              </Box>
+            </Modal>
+          </Box>
         </>
       ) : (
-        <p>Loading...</p>
+        <Loading />
       )}
     </>
   );
